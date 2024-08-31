@@ -1,0 +1,27 @@
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes pulseBright {
+    0%, 100% {
+        background-color: #fbcfe8; /* Light Pink */
+    }
+    50% {
+        background-color: #f87171; /* Bright Red */
+    }
+}
+
+.pulse-bright {
+    animation: pulseBright 2s infinite;
+}

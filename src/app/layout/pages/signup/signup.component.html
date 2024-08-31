@@ -1,0 +1,147 @@
+<div class="bg-gray-100">
+    <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                Create your account
+            </h2>
+        </div>
+
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <form class="space-y-6" [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">
+                            Name
+                        </label>
+                        <div class="mt-1">
+                            <input id="name" name="name" type="text" required formControlName="name"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        @if(registerForm.get('name')?.errors && registerForm.get('name')?.touched) 
+                        {
+                            <p class="mt-2 text-sm text-red-600">
+                            @if(registerForm.get('name')?.errors?.['required'])
+                                 {
+                                         <span class="font-medium">Error:</span> Please enter a valid name.                                    
+                                 }
+                                 @else if (registerForm.get('name')?.errors?.['minlength']) 
+                                 {
+                                     <span class="font-medium">Error:</span> name should be more than 3 characters.
+                                 }
+                                 @else if (registerForm.get('name')?.errors?.['maxlength']) 
+                                 {
+                                     <span class="font-medium">Error:</span> name should be less than or equal 20 characters.
+                                 }
+                            </p>
+                        }
+                    </div>
+
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">
+                            Email address
+                        </label>
+                        <div class="mt-1">
+                            <input id="email" name="email" type="email" autocomplete="email" required formControlName="email"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        @if(registerForm.get('email')?.errors && registerForm.get('email')?.touched)
+                        {
+                            <p class="mt-2 text-sm text-red-600">
+                                @if(registerForm.get('email')?.errors?.['required'] )
+                                {
+                                    <span class="font-medium">Error:</span> email is required. 
+                                }
+                                @else if (registerForm.get('email')?.errors?.['email']) 
+                                {
+                                    <span class="font-medium">Error:</span> enter a valid email adress. 
+                                }
+                            </p>
+                        }
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <div class="mt-1 relative">
+                            <input id="password" name="password" type="password" autocomplete="new-password" required formControlName="password"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        @if(registerForm.get('password')?.errors && registerForm.get('password')?.touched)
+                        {
+                            <p class="mt-2 text-sm text-red-600">
+            
+                                @if(registerForm.get('password')?.errors?.['required'] )
+                                {
+                                    <span class="font-medium">Error: </span>password is Requied
+                                }
+                                @else if (registerForm.get('password')?.errors?.['pattern']) 
+                                {
+                                    <span class="font-medium">Error:</span> Kindly enter valid password
+                                }
+                            </p>
+                        }
+                    </div>
+
+                    <div>
+                        <label for="repassword" class="block text-sm font-medium text-gray-700">
+                            Confirm Password
+                        </label>
+                        <div class="mt-1 relative">
+                            <input id="repassword" name="repassword" type="password" autocomplete="new-password" required formControlName="rePassword"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        @if(registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched)
+                        {
+                            <p class="mt-2 text-sm text-red-600">
+                                @if(registerForm.get('rePassword')?.errors?.['required'] )
+                                {
+                                    <span class="font-medium">Error:</span> rePassword is Requied
+                                }
+                                @else if (registerForm.get('rePassword')?.errors?.['pattern']) 
+                                {
+                                    <span class="font-medium">Error:</span> Kindly enter valid rePassword
+                                }
+                            </p>
+                        }
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700">
+                            Phone Number
+                        </label>
+                        <div class="mt-1">
+                            <input id="phone" name="phone" type="tel" autocomplete="tel" required formControlName="phone"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        @if(registerForm.get('phone')?.errors && registerForm.get('phone')?.touched)
+                        {
+                            <p class="mt-2 text-sm text-red-600">
+                                @if(registerForm.get('phone')?.errors?.['required'] )
+                                {
+                                    <span class="font-medium">Error:</span> phone is Requied
+                                }
+                                @else if (registerForm.get('phone')?.errors?.['pattern']) 
+                                {
+                                    <span class="font-medium">Error:</span> please enter valid phone
+                                }
+                            </p>
+                        }
+                    </div>
+
+                    <div>
+                        <button type="submit" [disabled]="registerForm.invalid"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#1F2937] hover:bg-[#374151] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1F2937]">
+                            @if(isLoading){
+                                <div class="loader"></div>
+                            } @else{
+                                Sign up 
+                            } 
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

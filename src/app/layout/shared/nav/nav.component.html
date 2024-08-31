@@ -1,0 +1,52 @@
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-white text-xl font-bold cursor-pointer" routerLink="/home">
+                E-Commerce Route
+            </div>
+            <!-- Menu (Hidden by default on small screens) -->
+             @if(isLogedIn){
+                <div class="mx-auto hidden md:flex space-x-6">
+                    <a class="text-white hover:text-gray-300" routerLink = "home" >Home</a>
+                    <a class="text-white hover:text-gray-300" routerLink ="products" >Products</a>
+                    <a class="text-white hover:text-gray-300" routerLink ="cart" >Cart</a>
+                    <a class="text-white hover:text-gray-300" routerLink ="about" >About</a>
+                    <a class="text-white hover:text-gray-300" routerLink ="contact">Contact</a>
+                </div> 
+             };
+            
+            <!-- Right side icons and buttons -->
+            <div class="hidden md:flex items-center space-x-4">
+                @if(isLogedIn){
+                    <a class="text-white hover:text-gray-300" routerLink = "login" (click)="logout()">Logout</a>
+                } @else{
+                    <a class="text-white hover:text-gray-300" routerLink = "login">Login</a>
+                    <a class="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-700" routerLink = "signup">Signup</a>
+                }
+
+            </div>
+            <!-- Hamburger Menu (Visible on small screens) -->
+            <div class="md:hidden flex items-center">
+                <!-- Hamburger Button -->
+                <input type="checkbox" id="menu-toggle" class="peer hidden">
+                <label for="menu-toggle" class="text-white cursor-pointer">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </label>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        @if(isLogedIn){
+            <div class="peer-checked:flex hidden flex-col md:hidden bg-gray-800 mt-2 mx-auto">
+                <a href="#" class="px-4 py-2 text-white hover:bg-gray-700">Home</a>
+                <a href="#" class="px-4 py-2 text-white hover:bg-gray-700">Products</a>
+                <a href="#" class="px-4 py-2 text-white hover:bg-gray-700">Cart</a>
+                <a href="#" class="px-4 py-2 text-white hover:bg-gray-700">About</a>
+                <a href="#" class="px-4 py-2 text-white hover:bg-gray-700">Contact</a>
+                <a href="#" class="px-4 py-2 text-white hover:bg-gray-700">Login</a>
+                <a href="#" class="px-4 py-2 text-white hover:bg-gray-700">Signup</a>
+            </div>
+        }
+    </nav>

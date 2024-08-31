@@ -1,0 +1,107 @@
+<section class="bg-gray-100 p-3 min-h-screen">
+  @if(userCart?.numOfCartItems == 0){
+    <section class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <div class="text-center">
+        <div class="text-6xl animate-bounce-slow inline-block mb-8">
+          😢
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+          Your cart is empty
+        </h2>
+        <p class="text-gray-600 mb-8">
+          There are no products in your cart.
+        </p>
+        <a class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300" routerLink ="/products">
+          Go to Products
+        </a>
+      </div>
+    </section>
+  } @else if(userCart == null){
+    <div class="relative h-screen w-full">
+      <!-- Blurred background -->
+      <div class="absolute inset-0 bg-gray-200 backdrop-filter backdrop-blur-sm w-[100%]"></div>
+      
+      <!-- Centered loader -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="loader"></div>
+      </div>
+    </div>
+  }
+    @for (item of userCart?.data?.products; track $index) {
+      <div class="flex justify-center mb-3">
+        <div class="w-full md:w-10/12 xl:w-8/12">
+          <div class="bg-white shadow-md rounded-lg border">
+            <div class="p-4">
+              <div class="flex flex-wrap">
+                <div class="w-full lg:w-1/4 mb-4 lg:mb-0">
+                  <div class="relative overflow-hidden rounded-lg h-48 hover:opacity-75 transition-opacity duration-300">
+                    <img src={{item.product.imageCover}}
+                      class="w-full h-full object-cover"/>
+                    <a href="#!" class="absolute inset-0 bg-white bg-opacity-15"></a>
+                  </div>
+                </div>
+                <div class="w-full lg:w-1/2 px-4">
+                  <h5 class="text-xl font-semibold">{{item.product.title}}</h5>
+                  <div class="flex items-center">
+                    <div class="text-red-500 mr-2">
+                      <i class="fa fa-star"></i>
+                    </div>
+                    <span>{{item.product.ratingsAverage}}</span>
+                  </div>
+                  <div class="mt-1 mb-1 text-sm text-gray-500">
+                    <span>{{item.product.category.name}}</span>
+                    <span class="text-blue-500"> • </span>
+                    <span>{{item.product.brand.name}}</span>
+                    <span class="text-blue-500"> • </span>
+                    <span>{{item.product.category.slug}}</span>
+                  </div>
+                  <div class="mb-2 text-sm text-gray-500">
+                    <span>{{item.product.brand.slug}}</span>
+                    <span class="text-blue-500"> • </span>
+                    <span>{{item.product.title}}</span>
+                    <span class="text-blue-500"> • </span>
+                    <span>{{item.product.category.name}}</span>
+                  </div>
+                  <p class="text-sm font-semibold">Quantity left of this item</p>
+                  <p class="inline-block bg-blue-500 text-white px-2 py-1 rounded-full text-xs">
+                    {{item.product.quantity}}
+                  </p>
+                </div>
+                <div class="w-full lg:w-1/4 mt-4 lg:mt-0 lg:border-l lg:pl-4">
+                  <div class="flex items-center mb-1">
+                    <h4 class="text-xl font-bold mr-1">{{item.price}} </h4>
+                  </div>
+                  <h6 class="text-green-500">Free shipping</h6>
+                  <div class="flex flex-col mt-4">
+                    <button class="bg-yellow-500 text-white px-4 py-2 rounded text-sm hover:bg-yellow-600 transition-colors duration-300" type="button">
+                      Details <i class="px-2 fa-solid fa-circle-info"></i>
+                    </button>
+                    <button (click)="deleteItem(item.product._id)" class="mt-2 border border-red-500 text-red-500 px-4 py-2 rounded text-sm hover:bg-red-500 hover:text-white transition-colors duration-300" type="button">
+                      Delete
+                      <i class="px-2 fa-regular fa-trash-can"></i>
+                    </button>
+                    <div class="p-2 mt-1 flex justify-center items-center space-x-3">
+                      <span (click)="increment(item.product._id , item.count )" class="cursor-pointer">
+                        <!-- Plus Icon SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                          <path d="M12 5c0.552 0 1 0.448 1 1v5h5c0.552 0 1 0.448 1 1s-0.448 1-1 1h-5v5c0 0.552-0.448 1-1 1s-1-0.448-1-1v-5H6c-0.552 0-1-0.448-1-1s0.448-1 1-1h5V6c0-0.552 0.448-1 1-1z"/>
+                        </svg>
+                      </span>
+                      <span class="text-xl">{{item.count}}</span>
+                      <span (click)="decrement(item.product._id , item.count)" class="cursor-pointer">
+                        <!-- Minus Icon SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                          <path d="M19 12c0 0.552-0.448 1-1 1H6c-0.552 0-1-0.448-1-1s0.448-1 1-1h12c0.552 0 1 0.448 1 1z"/>
+                        </svg>
+                      </span>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </section>
